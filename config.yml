@@ -1,10 +1,9 @@
-
 version: 2
 jobs:
   build:
     docker:
       - image: circleci/node:10
-    working_directory: ~/Circle-ci-final
+    working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
@@ -46,7 +45,6 @@ jobs:
       - run: 
           name: Docker build and push
           command: |
-            cd ~/Circle-ci-final/porch-guru
             docker build \
               --build-arg COMMIT_REF=${CIRCLE_SHA1} \
               --build-arg BUILD_DATE=`date -u +”%Y-%m-%dT%H:%M:%SZ”` \
